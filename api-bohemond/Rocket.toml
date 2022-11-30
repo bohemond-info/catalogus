@@ -1,0 +1,10 @@
+# Web server configuration for api-bohemond-info.
+#  Handles all non-business-logic configuration.
+#  Business-logic config found in bohemond.yaml.
+[default]
+log_level="debug"
+
+[production]
+log_level="debug"
+static_directory="./resources/"
+address="0.0.0.0"

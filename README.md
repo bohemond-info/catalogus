@@ -32,3 +32,5 @@ Using this quick-and-dirty method you can populate the data variable in the js f
   * [Done] Set up ip routing/lb
   * [Done] Set up pod for webserver
   * Expose Server via LB
+* Cleanup
+  * Logging -> `tracing` library.

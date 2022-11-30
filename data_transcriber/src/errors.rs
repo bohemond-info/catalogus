@@ -6,7 +6,6 @@ use std::error::Error;
 use std::fmt;
 use std::io;
 use tracing::debug;
-use csv::Error as CSVError;
 
 #[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 #[non_exhaustive]
@@ -101,10 +100,10 @@ impl TranscriberError {
     }
 }
 
-pub fn csv_err(e: &dyn Error, msg: &str) -> TranscriberError {
-    debug!("{}", e);
-    TranscriberError::new(ErrorKind::InvalidCSV, msg)
-}
+// pub fn csv_err(e: &dyn Error, msg: &str) -> TranscriberError {
+//     debug!("{}", e);
+//     TranscriberError::new(ErrorKind::InvalidCSV, msg)
+// }
 
 
 pub fn io_err(e: &dyn Error, msg: &str) -> TranscriberError {
@@ -112,7 +111,7 @@ pub fn io_err(e: &dyn Error, msg: &str) -> TranscriberError {
     TranscriberError::new(ErrorKind::IoError, msg)
 }
 
-pub fn yaml_err(e: &dyn Error, msg: &str) -> TranscriberError {
-    debug!("{}", e);
-    TranscriberError::new(ErrorKind::InvalidYaml, msg)
-}
+// pub fn yaml_err(e: &dyn Error, msg: &str) -> TranscriberError {
+//     debug!("{}", e);
+//     TranscriberError::new(ErrorKind::InvalidYaml, msg)
+// }

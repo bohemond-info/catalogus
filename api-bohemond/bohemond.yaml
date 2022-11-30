@@ -1,0 +1,9 @@
+# Application Configuration for api-bohemond-info
+#   Handles all business-logic configuration.
+#   Web server configuration found in Rocket.toml
+default:
+  log_level: "debug"
+  static_asset_directory: "./resources/"
+production:
+  log_level: "debug"
+  static_asset_directory: "./resources/"

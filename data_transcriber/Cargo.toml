@@ -11,5 +11,6 @@ path-clean = "*"
 serde = { version = "*", features = ["derive"] }
 serde_yaml = "*"
 serde_json = "*"
+schemars = "*"
 tracing = "*"
 tracing-subscriber = "*"

@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: bohemond
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-bohemond
+  namespace: bohemond
+  labels:
+    app: api-bohemond
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: api-bohemond
+  template:
+    metadata:
+      labels:
+        app: api-bohemond
+    spec:
+      containers:
+        - image: registry.digitalocean.com/eryri/bohemond:latest
+          name: api-bohemond
+          ports:
+            - containerPort: 8000
+      imagePullSecrets:
+      # This needs to be configured in the DO Registry page. That will automatically add an 'eryri' secret to all nss.
+        - name: eryri
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-api-bohemond
+  namespace: bohemond
+  labels:
+    app: api-bohemond
+spec:
+  ports:
+    - port: 80
+      targetPort: 8000
+      protocol: TCP
+      name: http
+  selector:
+    app: api-bohemond
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: api-bohemond-ingress
+  namespace: bohemond
+  labels:
+    app: api-bohemond
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "bohemond.info"
+      http:
+        paths:
+          - path: "/"
+            pathType: Prefix
+            backend:
+              service:
+                name: service-api-bohemond
+                port:
+                  number: 80
